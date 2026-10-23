@@ -1,0 +1,6 @@
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 训练生成的模型文件（体积较大，默认不入库）
+mnist_cnn.keras

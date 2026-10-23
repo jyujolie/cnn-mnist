@@ -1,6 +1,6 @@
 # CNN 手写数字识别
 
-使用卷积神经网络（CNN）识别 MNIST 数据集中的手写数字 0～9。完整代码、训练记录和可视化单元格见 [CNN手写数字识别.ipynb](CNN手写数字识别.ipynb)。
+使用卷积神经网络（CNN）识别 MNIST 数据集中的手写数字 0～9。完整代码、训练记录和可视化单元格见 [CNN手写数字识别.ipynb](CNN手写数字识别.ipynb)；另附等价的纯 Python 脚本 [CNN手写数字识别.py](CNN手写数字识别.py)，可在本地命令行直接运行。
 
 ## 数据集
 
@@ -37,5 +37,14 @@ MNIST 包含 60,000 张训练图片和 10,000 张测试图片。每张图片为 
 1. 在 GitHub 中打开笔记本，点击 **Open in Colab**。
 2. 在 Colab 中依次运行所有单元格，或选择“代码执行程序 → 全部运行”。
 3. 查看测试集准确率，以及最后的正确和错误预测示例。
+
+### 本地运行 Python 脚本
+
+```bash
+pip install tensorflow numpy matplotlib
+python CNN手写数字识别.py
+```
+
+脚本流程与笔记本完全一致：加载数据、预处理、构建并训练 CNN、评估测试集准确率、绘制正确与错误的预测示例，最后把模型保存为 `mnist_cnn.keras`。图片通过 `plt.show()` 弹出显示；无图形界面的环境可改成 `plt.savefig("结果.png")` 保存为文件。
 
 数据集会由 `tf.keras.datasets.mnist.load_data()` 首次运行时下载。运行环境需要 TensorFlow、NumPy 和 Matplotlib；Colab 通常已提供这些库。
