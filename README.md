@@ -48,3 +48,30 @@ python CNN手写数字识别.py
 脚本流程与笔记本完全一致：加载数据、预处理、构建并训练 CNN、评估测试集准确率、绘制正确与错误的预测示例，最后把模型保存为 `mnist_cnn.keras`。图片通过 `plt.show()` 弹出显示；无图形界面的环境可改成 `plt.savefig("结果.png")` 保存为文件。
 
 数据集会由 `tf.keras.datasets.mnist.load_data()` 首次运行时下载。运行环境需要 TensorFlow、NumPy 和 Matplotlib；Colab 通常已提供这些库。
+
+## PyTorch 版本（实验一）
+
+另提供 PyTorch 实现的 [CNN手写数字识别_pytorch.py](CNN手写数字识别_pytorch.py)，用于《深度学习》实验一「手写数字识别」。模型结构沿用上述 CNN 思路（两层卷积 32→64 通道 + 全连接，共 121,930 个可训练参数），使用 PyTorch 重写。
+
+### 与 TensorFlow 版的主要差异
+
+- 框架换成 PyTorch（`torch` / `torch.nn` / `torchvision`）；
+- 使用 `DataLoader` 分批加载，支持 GPU（`cuda`）；
+- **加入数据增强**：训练集随机旋转（±10°）和随机仿射变换（平移/缩放），提升泛化能力；
+- 损失函数 `CrossEntropyLoss`、优化器 `Adam`（lr=0.001）。
+
+### 运行方式
+
+```bash
+conda create -n dl_lab python=3.10 -y
+conda activate dl_lab
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+pip install matplotlib numpy
+python CNN手写数字识别_pytorch.py
+```
+
+### 训练结果
+
+- 训练轮数：6（`epochs=6`），批量大小 128；
+- 加入数据增强后，测试集准确率：**99.16%**（要求 ≥ 98%）；
+- 训练结束后保存模型 `mnist_cnn_pytorch.pth`，并生成预测示例图 `predict_examples.png`（上排正确、下排错误）。

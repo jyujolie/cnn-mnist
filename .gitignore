@@ -4,3 +4,7 @@ __pycache__/
 
 # 训练生成的模型文件（体积较大，默认不入库）
 mnist_cnn.keras
+mnist_cnn_pytorch.pth
+
+# MNIST 数据集（首次运行自动下载，不入库）
+data/
